@@ -3,7 +3,6 @@ using FFS.Libraries.StaticEcs;
 using Game.AI;
 using Game.Input;
 using Game.Movement;
-using Game.Player;
 using VContainer;
 using VContainer.Unity;
 

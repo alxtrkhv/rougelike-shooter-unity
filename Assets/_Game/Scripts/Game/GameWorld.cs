@@ -1,5 +1,6 @@
 using FFS.Libraries.StaticEcs;
 using Game.AI;
+using Game.Characters;
 using Game.Movement;
 
 namespace Game
@@ -25,7 +26,8 @@ namespace Game
       RegisterComponentType<TargetPosition>();
       RegisterComponentType<TargetDirection>();
 
-      RegisterTagType<Player.Player>();
+      RegisterTagType<Character>();
+      RegisterTagType<Player>();
 
       RegisterComponentType<AuthoringLink>();
 

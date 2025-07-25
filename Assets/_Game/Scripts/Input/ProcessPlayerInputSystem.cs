@@ -1,4 +1,5 @@
 using FFS.Libraries.StaticEcs;
+using Game.Characters;
 using Game.Movement;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -27,7 +28,7 @@ namespace Game.Input
     {
       var moveInput = _moveAction.ReadValue<Vector2>();
 
-      foreach (var entity in GameWorld.QueryEntities.For<TagAll<Player.Player>>()) {
+      foreach (var entity in GameWorld.QueryEntities.For<TagAll<Player>>()) {
         entity.Put<TargetDirection>(new() { Value = moveInput, });
       }
     }

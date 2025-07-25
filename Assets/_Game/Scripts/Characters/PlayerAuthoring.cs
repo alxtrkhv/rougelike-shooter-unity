@@ -1,6 +1,6 @@
 using Game.Movement;
 
-namespace Game.Player
+namespace Game.Characters
 {
   public class PlayerAuthoring : Authoring
   {
@@ -10,7 +10,7 @@ namespace Game.Player
         new Speed { Value = 2f, }
       );
 
-      entity.SetTag<Player>();
+      entity.SetTag<Character, Player>();
 
       return entity;
     }

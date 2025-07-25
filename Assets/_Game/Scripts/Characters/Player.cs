@@ -1,6 +1,6 @@
 using FFS.Libraries.StaticEcs;
 
-namespace Game.Player
+namespace Game.Characters
 {
   public struct Player : ITag { }
 }
