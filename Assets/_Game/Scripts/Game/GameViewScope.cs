@@ -1,3 +1,5 @@
+using System;
+using FFS.Libraries.StaticEcs;
 using VContainer;
 using VContainer.Unity;
 
@@ -8,7 +10,28 @@ namespace Game.Game
     protected override void Configure(IContainerBuilder builder)
     {
       builder.RegisterComponentInHierarchy<GameView>();
-      builder.Register<IInitializable, GameLoop>(Lifetime.Singleton).AsSelf();
+      builder.Register<GameLoop>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
+
+      RegistrationBuilder RegisterSystem<TSystem>() where TSystem : ISystem
+      {
+        var systemType = typeof(TSystem);
+        RegistrationBuilder? registration = null;
+
+        if (typeof(IFrameSystem).IsAssignableFrom(systemType)) {
+          registration = builder.Register<TSystem>(Lifetime.Scoped).As<IFrameSystem>();
+        }
+
+        if (typeof(ITickSystem).IsAssignableFrom(systemType)) {
+          registration = builder.Register<TSystem>(Lifetime.Scoped).As<ITickSystem>();
+        }
+
+        if (typeof(ICallOnceSystem).IsAssignableFrom(systemType) &&
+            !typeof(IUpdateSystem).IsAssignableFrom(systemType)) {
+          registration = builder.Register<TSystem>(Lifetime.Scoped).As<ICallOnceSystem>();
+        }
+
+        return registration ?? throw new ArgumentException("Invalid system type");
+      }
     }
   }
 }
