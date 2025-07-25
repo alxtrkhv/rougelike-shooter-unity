@@ -7,12 +7,12 @@ using Viewigation.Views;
 
 namespace Game.Game
 {
-  public class GameScreen : UnityRoute<GameView>, ICustomScopeProvider<GameViewScope>
+  public class GameScreen : UnityRoute<GameView>
   {
     public GameScreen() : base("Screen/Game", false) { }
   }
 
-  public class GameView : UnityView
+  public class GameView : UnityView, ICustomScopeProvider<GameViewScope>
   {
     private GameLoop _gameLoop = null!;
 
