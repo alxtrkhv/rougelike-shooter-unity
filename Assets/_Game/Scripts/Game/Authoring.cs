@@ -1,6 +1,7 @@
+using Game.Movement;
 using UnityEngine;
 
-namespace Game.Game
+namespace Game
 {
   public abstract class Authoring : MonoBehaviour
   {
@@ -13,6 +14,12 @@ namespace Game.Game
       }
 
       Entity = OnBake();
+
+      Entity.Add(
+        new TransformLink { Value = transform },
+        new CurrentPosition { Value = transform.localPosition },
+        new AuthoringLink { Value = this, }
+      );
     }
 
     protected virtual GameWorld.Entity OnBake() => GameWorld.Entity.New();

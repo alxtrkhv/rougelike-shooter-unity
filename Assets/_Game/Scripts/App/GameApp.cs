@@ -1,6 +1,5 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using Game.Game;
 using VContainer.Unity;
 using Viewigation.Navigation;
 

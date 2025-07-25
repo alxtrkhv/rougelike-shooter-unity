@@ -5,7 +5,7 @@ using Viewigation.Routes;
 using Viewigation.VContainer;
 using Viewigation.Views;
 
-namespace Game.Game
+namespace Game
 {
   public class GameScreen : UnityRoute<GameView>
   {

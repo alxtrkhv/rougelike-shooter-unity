@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using FFS.Libraries.StaticEcs;
 using VContainer.Unity;
 
-namespace Game.Game
+namespace Game
 {
   public class GameLoop : IInitializable, IDisposable, ITickable, IFixedTickable
   {
@@ -26,6 +26,8 @@ namespace Game.Game
       var worldConfig = WorldConfig.Default();
 
       GameWorld.Create(worldConfig);
+
+      GameWorld.RegisterComponents();
 
       GameWorld.Initialize();
 

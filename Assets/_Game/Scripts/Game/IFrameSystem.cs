@@ -1,6 +1,6 @@
 using FFS.Libraries.StaticEcs;
 
-namespace Game.Game
+namespace Game
 {
   public interface IFrameSystem : IUpdateSystem { }
 }
