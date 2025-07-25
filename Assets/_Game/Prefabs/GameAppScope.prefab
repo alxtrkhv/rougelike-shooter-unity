@@ -55,6 +55,13 @@ MonoBehaviour:
     <Root>k__BackingField: {fileID: 0}
     _pool: {fileID: 3224861616818795409}
     _blocker: {fileID: 0}
+    <DependentLayers>k__BackingField:
+    - Root
+  - <Id>k__BackingField: Root
+    <UnloadViewOnClose>k__BackingField: 0
+    <Root>k__BackingField: {fileID: 0}
+    _pool: {fileID: 3224861616818795409}
+    _blocker: {fileID: 0}
     <DependentLayers>k__BackingField: []
 --- !u!1 &7619539454840219472
 GameObject:

@@ -1,5 +1,6 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using Game.Game;
 using VContainer.Unity;
 using Viewigation.Navigation;
 
@@ -7,6 +8,9 @@ namespace Game.App
 {
   public class GameApp : IAsyncStartable
   {
+    public const string UILayer = "UI";
+    public const string RootLayer = "Root";
+
     private readonly INavigation _navigation;
 
     public GameApp(INavigation navigation)
@@ -17,14 +21,24 @@ namespace Game.App
     public async UniTask StartAsync(CancellationToken cancellation = default)
     {
       Log.Trace("App starting.");
-      _navigation.RegisterOnLayer<SplashScreen>("UI");
+      _navigation.RegisterOnLayer<SplashScreen>(UILayer);
+      _navigation.RegisterOnLayer<GameScreen>(RootLayer);
 
-      await _navigation.Load<SplashScreen>(tryFindLooseView: true, cancellation: cancellation);
-      await _navigation.Open<SplashScreen>(cancellation: cancellation);
+      var splashScreen = await _navigation.Load<SplashScreen>(tryFindLooseView: true, cancellation: cancellation);
+      if (splashScreen == null) {
+        Log.Warning("Failed to load splash screen.");
+      }
 
-      // Initialization logic goes here
+      await (splashScreen?.Open<SplashScreen>(cancellation: cancellation) ?? UniTask.CompletedTask);
 
-      await _navigation.Close<SplashScreen>(cancellation: cancellation);
+      var gameScreen = await _navigation.Open<GameScreen>(cancellation: cancellation);
+      if (gameScreen == null) {
+        Log.Error("Failed to load game screen.");
+        Log.Error("App failed to start.");
+        return;
+      }
+
+      await (splashScreen?.Close<SplashScreen>(cancellation: cancellation) ?? UniTask.CompletedTask);
       Log.Debug("App started.");
     }
   }
