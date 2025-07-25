@@ -59,6 +59,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentReference:
-    TypeName: 
+    TypeName: Game.App.GameAppScope
   autoRun: 1
   autoInjectGameObjects: []
