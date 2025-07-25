@@ -21,6 +21,27 @@
       "dependencies": {},
       "url": "https://package.openupm.com"
     },
+    "com.felid-force-studios.static-ecs": {
+      "version": "https://github.com/Felid-Force-Studios/StaticEcs.git#v1.0.21",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "b45efca2208d7d1816caea93a0e59c2817755078"
+    },
+    "com.felid-force-studios.static-ecs-unity": {
+      "version": "https://github.com/Felid-Force-Studios/StaticEcs-Unity.git#v1.0.0",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "44f658d69c173d4ee27ef107b8f6c903dd076af7"
+    },
+    "com.felid-force-studios.static-pack": {
+      "version": "https://github.com/Felid-Force-Studios/StaticPack.git#v1.0.2",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "282fbba9637504c310db89d88f0e00eea7b4a655"
+    },
     "com.kyrylokuzyk.primetween": {
       "version": "1.3.2",
       "depth": 0,

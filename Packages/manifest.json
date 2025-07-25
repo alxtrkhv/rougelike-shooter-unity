@@ -2,6 +2,9 @@
   "dependencies": {
     "com.alxtrkhv.viewigation": "https://github.com/alxtrkhv/viewigation.git?path=/Viewigation.Unity#release/v0.1.0",
     "com.alxtrkhv.omnihavior": "https://github.com/alxtrkhv/omnihavior.git?path=/Omnihavior.Unity#release/v0.1.1",
+    "com.felid-force-studios.static-ecs": "https://github.com/Felid-Force-Studios/StaticEcs.git#v1.0.21",
+    "com.felid-force-studios.static-pack": "https://github.com/Felid-Force-Studios/StaticPack.git#v1.0.2",
+    "com.felid-force-studios.static-ecs-unity": "https://github.com/Felid-Force-Studios/StaticEcs-Unity.git#v1.0.0",
     "jp.hadashikick.vcontainer": "1.17.0",
     "com.cysharp.unitask": "2.5.10",
     "com.kyrylokuzyk.primetween": "1.3.2",
