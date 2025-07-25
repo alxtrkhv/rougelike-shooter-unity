@@ -1,3 +1,5 @@
+using Game.Characters;
+using Game.HealthManagement;
 using Game.Movement;
 using UnityEngine;
 
@@ -20,6 +22,11 @@ namespace Game
         new CurrentPosition { Value = transform.localPosition },
         new AuthoringLink { Value = this, }
       );
+
+      if (Entity.HasAllOfTags<Character>()) {
+        Entity.SetTag<Alive>();
+        Entity.Add<Health>(new() { Value = 10f, MaxValue = 10f, });
+      }
     }
 
     protected virtual GameWorld.Entity OnBake() => GameWorld.Entity.New();

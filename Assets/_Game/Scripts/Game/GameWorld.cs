@@ -1,6 +1,7 @@
 using FFS.Libraries.StaticEcs;
 using Game.AI;
 using Game.Characters;
+using Game.HealthManagement;
 using Game.Movement;
 
 namespace Game
@@ -28,6 +29,12 @@ namespace Game
 
       RegisterTagType<Character>();
       RegisterTagType<Player>();
+
+      RegisterComponentType<Health>();
+      RegisterComponentType<DamageRequest>();
+      RegisterComponentType<HealRequest>();
+      RegisterTagType<Alive>();
+      RegisterTagType<Dead>();
 
       RegisterComponentType<AuthoringLink>();
 

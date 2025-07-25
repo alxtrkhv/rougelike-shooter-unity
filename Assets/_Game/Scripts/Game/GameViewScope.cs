@@ -1,6 +1,7 @@
 using System;
 using FFS.Libraries.StaticEcs;
 using Game.AI;
+using Game.HealthManagement;
 using Game.Input;
 using Game.Movement;
 using VContainer;
@@ -23,6 +24,10 @@ namespace Game
       RegisterSystem<ProcessPlayerInputSystem>();
       RegisterSystem<ProcessTargetPositionSystem>();
       RegisterSystem<ProcessTargetDirectionSystem>();
+
+      RegisterSystem<ProcessHealRequestsSystem>();
+      RegisterSystem<ProcessDamageRequestsSystem>();
+
       RegisterSystem<ApplyNewPositionSystem>();
 
       // Destroy
