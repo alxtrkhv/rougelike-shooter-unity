@@ -17,6 +17,8 @@ namespace Game.App
     public async UniTask StartAsync(CancellationToken cancellation = default)
     {
       Log.Trace("App starting.");
+      _navigation.RegisterOnLayer<SplashScreen>("UI");
+
       await _navigation.Load<SplashScreen>(tryFindLooseView: true, cancellation: cancellation);
       await _navigation.Open<SplashScreen>(cancellation: cancellation);
 
