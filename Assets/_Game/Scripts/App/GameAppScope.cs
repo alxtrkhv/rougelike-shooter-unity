@@ -23,7 +23,7 @@ namespace Game.App
         .AddLayerConfigs(_navigationLayerConfigs)
         .Create();
 
-      builder.RegisterInstance(navigation);
+      builder.Register<INavigation>(_ => navigation!, Lifetime.Singleton);
     }
   }
 }
