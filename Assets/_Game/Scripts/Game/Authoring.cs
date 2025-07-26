@@ -1,3 +1,4 @@
+using FFS.Libraries.StaticEcs;
 using Game.Characters;
 using Game.HealthManagement;
 using Game.Movement;
@@ -7,25 +8,26 @@ namespace Game
 {
   public abstract class Authoring : MonoBehaviour
   {
-    public GameWorld.Entity Entity { get; private set; }
+    public EntityGID Entity { get; private set; }
 
     public void BakeEntity()
     {
-      if (Entity.IsActual()) {
+      if (Entity.TryUnpack<GameWorld.Tag>(out _)) {
         return;
       }
 
-      Entity = OnBake();
+      var entity = OnBake();
+      Entity = entity.Gid();
 
-      Entity.Add(
+      entity.Add(
         new TransformLink { Value = transform },
         new CurrentPosition { Value = transform.localPosition },
         new AuthoringLink { Value = this, }
       );
 
-      if (Entity.HasAllOfTags<Character>()) {
-        Entity.SetTag<Alive>();
-        Entity.Add<Health>(new() { Value = 10f, MaxValue = 10f, });
+      if (entity.HasAllOfTags<Character>()) {
+        entity.SetTag<Alive>();
+        entity.Add<Health>(new() { Value = 10f, MaxValue = 10f, });
       }
     }
 
@@ -33,19 +35,19 @@ namespace Game
 
     public void DisposeEntity()
     {
-      if (!Entity.IsActual()) {
+      if (!Entity.TryUnpack<GameWorld.Tag>(out var entity)) {
         return;
       }
 
       OnDispose();
 
-      if (!Entity.IsActual()) {
+      if (!Entity.TryUnpack(out entity)) {
         return;
       }
 
-      Entity.Destroy();
+      entity.Destroy();
     }
 
-    protected virtual void OnDispose() => Entity.Destroy();
+    protected virtual void OnDispose()  { }
   }
 }

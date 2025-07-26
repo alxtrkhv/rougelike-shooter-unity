@@ -31,23 +31,23 @@ namespace Game
 
       GameWorld.Initialize();
 
-      GameWorld.FrameSystems.Create();
-      GameWorld.TickSystems.Create();
+      FrameSystems.Create();
+      TickSystems.Create();
 
       foreach (var callOnceSystem in _callOnceSystems) {
-        GameWorld.FrameSystems.AddCallOnce(callOnceSystem);
+        FrameSystems.AddCallOnce(callOnceSystem);
       }
 
       foreach (var frameSystem in _frameSystems) {
-        GameWorld.FrameSystems.AddUpdate(frameSystem);
+        FrameSystems.AddUpdate(frameSystem);
       }
 
       foreach (var tickSystem in _tickSystems) {
-        GameWorld.TickSystems.AddUpdate(tickSystem);
+        TickSystems.AddUpdate(tickSystem);
       }
 
-      GameWorld.FrameSystems.Initialize();
-      GameWorld.TickSystems.Initialize();
+      FrameSystems.Initialize();
+      TickSystems.Initialize();
     }
 
     public void Play()
@@ -74,7 +74,7 @@ namespace Game
         return;
       }
 
-      GameWorld.FrameSystems.Update();
+      FrameSystems.Update();
     }
 
     public void FixedTick()
@@ -83,15 +83,15 @@ namespace Game
         return;
       }
 
-      GameWorld.TickSystems.Update();
+      TickSystems.Update();
     }
 
     public void Dispose()
     {
       IsPlaying = false;
 
-      GameWorld.TickSystems.Destroy();
-      GameWorld.FrameSystems.Destroy();
+      TickSystems.Destroy();
+      FrameSystems.Destroy();
       GameWorld.Destroy();
     }
   }

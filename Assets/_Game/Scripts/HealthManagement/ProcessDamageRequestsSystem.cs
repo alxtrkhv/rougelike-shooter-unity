@@ -14,7 +14,7 @@ namespace Game.HealthManagement
       }
     }
 
-    private static void ProcessRequest(World<GameWorld.World>.Entity entity)
+    private static void ProcessRequest(World<GameWorld.Tag>.Entity entity)
     {
       ref var damageRequest = ref entity.Ref<DamageRequest>();
 

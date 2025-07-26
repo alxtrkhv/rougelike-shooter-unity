@@ -6,17 +6,10 @@ using Game.Movement;
 
 namespace Game
 {
-  public abstract class GameWorld : World<GameWorld.World>
+  public abstract class GameWorld : World<GameWorld.Tag>
   {
-    public struct World : IWorldType { }
+    public struct Tag : IWorldType { }
 
-    public struct Frame : ISystemsType { }
-
-    public struct Tick : ISystemsType { }
-
-    public abstract class FrameSystems : Systems<Frame> { }
-
-    public abstract class TickSystems : Systems<Tick> { }
 
     public static void RegisterComponents()
     {
@@ -40,5 +33,15 @@ namespace Game
 
       RegisterComponentType<Behavior>();
     }
+  }
+
+  public abstract class TickSystems : World<GameWorld.Tag>.Systems<TickSystems.Tag>
+  {
+    public struct Tag : ISystemsType { }
+  }
+
+  public abstract class FrameSystems : World<GameWorld.Tag>.Systems<FrameSystems.Tag>
+  {
+    public struct Tag : ISystemsType { }
   }
 }
