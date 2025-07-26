@@ -9,21 +9,38 @@ namespace Game.AI
   {
     public EnemyBehavior()
     {
-      Root = Builder.Lambda(entity => {
-          var playerAlive = GameWorld.QueryEntities.For<TagAll<Player>>().First(out var playerEntity);
-          if (!playerAlive) {
-            entity.TryDelete<TargetDirection>();
+      var checkPlayerAlive = Builder.Lambda(entity => {
+          var playerAlive = GameWorld.QueryEntities.For<TagAll<Player>>().First(out _);
+          if (playerAlive) {
             return NodeStatus.Success;
           }
+
+          entity.TryDelete<TargetDirection>();
+          return NodeStatus.Failure;
+        }
+      );
+
+      var checkDistance = Builder.Lambda(entity => {
+          GameWorld.QueryEntities.For<TagAll<Player>>().First(out var playerEntity);
 
           ref var playerPosition = ref playerEntity.Ref<CurrentPosition>();
           ref var currentPosition = ref entity.Ref<CurrentPosition>();
 
           var distance = (playerPosition.Value - currentPosition.Value).magnitude;
-          if (distance < 0.5f) {
-            entity.TryDelete<TargetDirection>();
+          if (distance >= 1f) {
             return NodeStatus.Success;
           }
+
+          entity.TryDelete<TargetDirection>();
+          return NodeStatus.Failure;
+        }
+      );
+
+      var followPlayer = Builder.Lambda(entity => {
+          GameWorld.QueryEntities.For<TagAll<Player>>().First(out var playerEntity);
+
+          ref var playerPosition = ref playerEntity.Ref<CurrentPosition>();
+          ref var currentPosition = ref entity.Ref<CurrentPosition>();
 
           var direction = (playerPosition.Value - currentPosition.Value).normalized;
 
@@ -31,6 +48,12 @@ namespace Game.AI
 
           return NodeStatus.Success;
         }
+      );
+
+      Root = Builder.Sequence(
+        checkPlayerAlive,
+        checkDistance,
+        followPlayer
       );
     }
   }
