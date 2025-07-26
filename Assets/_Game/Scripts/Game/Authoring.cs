@@ -20,8 +20,8 @@ namespace Game
       Entity = entity.Gid();
 
       entity.Add(
-        new TransformLink { Value = transform },
-        new CurrentPosition { Value = transform.localPosition },
+        new TransformLink { Value = transform, },
+        new CurrentPosition { Value = transform.localPosition, },
         new AuthoringLink { Value = this, }
       );
 
