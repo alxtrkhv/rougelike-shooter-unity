@@ -21,6 +21,8 @@ namespace Game
 
       RegisterTagType<Character>();
       RegisterTagType<Player>();
+      RegisterTagType<NPC>();
+      RegisterTagType<Enemy>();
 
       RegisterComponentType<Health>();
       RegisterComponentType<DamageRequest>();
