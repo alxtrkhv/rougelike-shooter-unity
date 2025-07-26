@@ -10,7 +10,6 @@ namespace Game
   {
     public struct Tag : IWorldType { }
 
-
     public static void RegisterComponents()
     {
       RegisterComponentType<TransformLink>();
